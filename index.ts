@@ -1,9 +1,15 @@
 class LLNode<T> {
   data: T;
+  prev: LLNode<T> | null = null;
   next: LLNode<T> | null = null;
 
-  constructor(data: T, next: LLNode<T> | null = null) {
+  constructor(
+    data: T,
+    prev: LLNode<T> | null = null,
+    next: LLNode<T> | null = null
+  ) {
     this.data = data;
+    this.prev = prev;
     this.next = next;
   }
 }
