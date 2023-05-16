@@ -14,6 +14,6 @@ if tsc index.ts; then
         cp template.ts index.ts
     fi
     cp index.ts snippets/$1.ts
-else
-    echo command returned some error
+# else
+    # echo command returned some error
 fi
