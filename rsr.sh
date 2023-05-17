@@ -1,17 +1,12 @@
-# tsc index.ts && node index.js
-# cp index.ts snippets/$1.ts
-# cp template.ts index.ts
-
-# if tsc index.ts; then
-#     echo command returned true
-# else
-#     echo command returned some error
-# fi
-
 if tsc index.ts; then
     node index.js
-    cp index.ts snippets/$1.ts
-    if [ $2 == "y" ]; then
+    if [ $1 != '.' ]; then
+        mkdir -p snippets/$1
+        cp index.ts snippets/$1/$2.ts
+    else
+        cp index.ts snippets/$2.ts
+    fi
+    if [ $3 == "y" ]; then
         cp template.ts index.ts
     fi
 # else
