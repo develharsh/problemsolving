@@ -1,4 +1,4 @@
-if tsc index.ts; then
+if tsc -p tsconfig.json; then
     node index.js
     if [ $1 != '.' ]; then
         mkdir -p snippets/$1
@@ -9,6 +9,8 @@ if tsc index.ts; then
     if [ $3 == "y" ]; then
         cp template.ts index.ts
     fi
-# else
-    # echo command returned some error
+else
+    echo command returned some error
 fi
+rm *.js
+rm snippets/*.js
