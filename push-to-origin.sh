@@ -6,4 +6,3 @@ sleep 3
 git commit -m "$1"
 sleep 3
 git push origin master
-echo Successfully pushed code
