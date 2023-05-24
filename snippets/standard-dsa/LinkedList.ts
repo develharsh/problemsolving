@@ -9,12 +9,14 @@ class Node<T> {
 
 class LinkedList<T> {
   private head: null | Node<T>;
+  private len: number = 0;
 
   constructor() {
     this.head = null;
   }
 
   push(...vals: T[]) {
+    this.len += vals.length;
     vals.forEach((val: T) => {
       if (this.head === null) {
         this.head = new Node<T>(val);
@@ -61,10 +63,12 @@ class LinkedList<T> {
     }
     return this;
   }
+
   newLine() {
     console.log("\n");
     return this;
   }
+
   reverse() {
     if (this.head === null || this.head.next === null) return this;
     let prev = null,
@@ -81,6 +85,10 @@ class LinkedList<T> {
 
     return this;
   }
+
+  length() {
+    return this.len;
+  }
 }
 
 let ll = new LinkedList<number>();
@@ -91,3 +99,5 @@ ll.push(10, 11, 12, 13, 14, 15)
   .newLine()
   .reverse()
   .traverse();
+
+console.log(ll.length());
