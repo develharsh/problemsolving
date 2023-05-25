@@ -7,7 +7,7 @@ if tsc -p tsconfig.json; then
         cp index.ts snippets/standard-dsa/$2.ts
     fi
     if [ $3 == "y" ]; then
-        cp template.ts index.ts
+        truncate -s 0 index.ts
     fi
 else
     echo command returned some error
