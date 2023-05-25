@@ -1,9 +1,7 @@
 #v2
 if tsc -p tsconfig.json; then
     node index.js
-    if [ $1 == 'c' ]; then
-        cp index.ts snippets/codeforces/$2.ts
-    elif [ $1 == 'l' ]; then
+    if [ $1 == 'l' ]; then
         cp index.ts snippets/leetcode/$2.ts
     elif [ $1 == 's' ]; then
         cp index.ts snippets/standard-dsa/$2.ts
