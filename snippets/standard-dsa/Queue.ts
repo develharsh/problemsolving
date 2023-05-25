@@ -7,52 +7,52 @@ class Node<T> {
   }
 }
 
-class Queue<T> {
-  private top: null | Node<T>;
+export default class Queue<T> {
+  private front: null | Node<T>;
+  private rear: null | Node<T>;
   private len: number = 0;
 
   constructor() {
-    this.top = null;
+    this.front = this.rear = null;
   }
 
-  push(...vals: T[]) {
+  enQueue(...vals: T[]) {
     this.len += vals.length;
     vals.forEach((val: T) => {
-      if (this.top === null) {
-        this.top = new Node<T>(val);
-        return;
+      const temp = new Node<T>(val);
+      if (this.rear === null) {
+        this.front = this.rear = temp;
+        return this;
       }
-      let start: Node<T> | null = this.top;
-      while (start.next) {
-        start = start.next;
-      }
-      start.next = new Node<T>(val);
+      this.rear.next = temp;
+      this.rear = temp;
     });
     return this;
   }
 
-  pop() {
-    if (this.top === null) {
+  deQueue() {
+    if (this.front === null) {
       return this;
     }
-    this.top = this.top.next;
+    this.front = this.front.next;
+    if (this.front === null) this.rear = null;
     --this.len;
     return this;
   }
 
   empty(loop: boolean) {
     if (loop) {
-      let start: null | Node<T> = this.top;
+      let start: null | Node<T> = this.front;
       while (start) {
         console.log(start.val);
         start = start.next;
       }
     }
-    this.top = null;
+    this.front = this.rear = null;
     this.len = 0;
     return this;
   }
 }
 
 let qu = new Queue();
-qu.push(1, 2, 3, 4).pop().empty(false);
+qu.enQueue(1, 2, 3, 4).deQueue().empty(true);

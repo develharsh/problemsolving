@@ -7,7 +7,7 @@ class Node<T> {
   }
 }
 
-class LinkedList<T> {
+export default class LinkedList<T> {
   private head: null | Node<T>;
   private len: number = 0;
 
