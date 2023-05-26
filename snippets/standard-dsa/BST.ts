@@ -28,6 +28,7 @@ export default class BST<T> {
 
   private __insert(root: Node<T> | null, val: T): Node<T> | null {
     if (root == null) {
+      ++this.size;
       root = new Node<T>(val);
       return root;
     }
@@ -42,6 +43,7 @@ export default class BST<T> {
   traverse(type: TraverseEnum) {
     this.__traverse(this.root, type);
   }
+
   private __traverse(root: Node<T> | null, type: string) {
     if (root != null) {
       if (type == "pre") console.log(root.val);
@@ -51,8 +53,27 @@ export default class BST<T> {
       if (type == "post") console.log(root.val);
     }
   }
+
   getRoot() {
     return this.root;
+  }
+
+  getSize() {
+    return this.size;
+  }
+
+  chechIfExists(key: T): boolean {
+    let root: Node<T> | null = this.root;
+    // Traverse until root reaches to dead end
+    while (root != null) {
+      // pass right subtree as new tree
+      if (key > root.val) root = root.right;
+      // pass left subtree as new tree
+      else if (key < root.val) root = root.left;
+      // if the key is found return 1
+      else return true;
+    }
+    return false;
   }
 }
 
@@ -67,3 +88,5 @@ bst.insert(92);
 bst.insert(5);
 bst.insert(27);
 bst.traverse(TraverseEnum.post);
+// setTimeout(() => {}, 3000);
+console.log(bst.chechIfExists(22 + 1));

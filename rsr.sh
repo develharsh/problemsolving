@@ -1,6 +1,16 @@
+#!/bin/bash
 #v2
 if tsc -p tsconfig.json; then
+    start_time=$(date +%s.%N)
+
+    # Execute the command
     node index.js
+
+    end_time=$(date +%s.%N)
+    
+    running_time=$(printf "%.3f" $(echo "$end_time - $start_time" | bc))
+
+    echo "Running time: ${running_time}s"
     if [ $1 == 'l' ]; then
         cp index.ts snippets/leetcode/$2.ts
     elif [ $1 == 's' ]; then
@@ -10,7 +20,7 @@ if tsc -p tsconfig.json; then
         truncate -s 0 index.ts
     fi
 else
-    echo command returned some error
+    echo "command returned some error"
 fi
 find . -name "*.js" -type f -delete
 
