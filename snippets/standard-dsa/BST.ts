@@ -64,13 +64,9 @@ export default class BST<T> {
 
   chechIfExists(key: T): boolean {
     let root: Node<T> | null = this.root;
-    // Traverse until root reaches to dead end
     while (root != null) {
-      // pass right subtree as new tree
       if (key > root.val) root = root.right;
-      // pass left subtree as new tree
       else if (key < root.val) root = root.left;
-      // if the key is found return 1
       else return true;
     }
     return false;
@@ -88,5 +84,4 @@ bst.insert(92);
 bst.insert(5);
 bst.insert(27);
 bst.traverse(TraverseEnum.post);
-// setTimeout(() => {}, 3000);
 console.log(bst.chechIfExists(22 + 1));
