@@ -12,11 +12,6 @@ if cat input.txt | node index.js; then
     elif [ $1 == 's' ]; then
         cp index.js snippets/standard-dsa/$2.js
     fi
-    if [ $3 == "y" ]; then
-        truncate -s 0 index.js
-    elif [[ $3 == "cf" || $3 == "lt" ]]; then
-        cp $3-template.js index.js
-    fi
 else
     echo "command returned some error"
 fi

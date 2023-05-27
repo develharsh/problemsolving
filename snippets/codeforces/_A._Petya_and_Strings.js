@@ -1,5 +1,5 @@
+//https://codeforces.com/problemset/problem/112/A
 "use strict";
-//
 process.stdin.resume();
 process.stdin.setEncoding("utf-8");
 
@@ -26,6 +26,11 @@ function readline() {
 }
 
 function main() {
-  let input = readline();
-  console.log(input);
+  let first = readline();
+  let second = readline();
+  first = first.toLowerCase();
+  second = second.toLowerCase();
+  if (first < second) console.log(-1);
+  else if (first > second) console.log(1);
+  else console.log(0);
 }
