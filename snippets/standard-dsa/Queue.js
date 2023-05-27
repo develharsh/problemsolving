@@ -1,25 +1,25 @@
-class Node<T> {
-  val: T;
-  next: null | Node<T> = null;
+class Node {
+  val;
+  next = null;
 
-  constructor(val: T) {
+  constructor(val) {
     this.val = val;
   }
 }
 
-export default class Queue<T> {
-  private front: null | Node<T>;
-  private rear: null | Node<T>;
-  private len: number = 0;
+class Queue {
+  front;
+  rear;
+  len = 0;
 
   constructor() {
     this.front = this.rear = null;
   }
 
-  enQueue(...vals: T[]) {
+  enQueue(...vals) {
     this.len += vals.length;
-    vals.forEach((val: T) => {
-      const temp = new Node<T>(val);
+    vals.forEach((val) => {
+      const temp = new Node(val);
       if (this.rear === null) {
         this.front = this.rear = temp;
         return this;
@@ -40,9 +40,9 @@ export default class Queue<T> {
     return this;
   }
 
-  empty(loop: boolean) {
+  empty(loop) {
     if (loop) {
-      let start: null | Node<T> = this.front;
+      let start = this.front;
       while (start) {
         console.log(start.val);
         start = start.next;

@@ -1,35 +1,29 @@
-enum TraverseEnum {
-  pre = "pre",
-  post = "post",
-  in = "in",
-}
+class Node {
+  val;
+  left = null;
+  right = null;
 
-class Node<T> {
-  val: T;
-  left: null | Node<T> = null;
-  right: null | Node<T> = null;
-
-  constructor(val: T) {
+  constructor(val) {
     this.val = val;
   }
 }
 
-export default class BST<T> {
-  private root: null | Node<T>;
-  private size: number = 0;
+class BST {
+  root;
+  size = 0;
 
   constructor() {
     this.root = null;
   }
 
-  insert(val: T) {
+  insert(val) {
     this.root = this.__insert(this.root, val);
   }
 
-  private __insert(root: Node<T> | null, val: T): Node<T> | null {
+  __insert(root, val) {
     if (root == null) {
       ++this.size;
-      root = new Node<T>(val);
+      root = new Node(val);
       return root;
     }
     if (val < root.val) {
@@ -40,11 +34,11 @@ export default class BST<T> {
     return root;
   }
 
-  traverse(type: TraverseEnum) {
+  traverse(type) {
     this.__traverse(this.root, type);
   }
 
-  private __traverse(root: Node<T> | null, type: string) {
+  __traverse(root, type) {
     if (root != null) {
       if (type == "pre") console.log(root.val);
       this.__traverse(root.left, type);
@@ -62,8 +56,8 @@ export default class BST<T> {
     return this.size;
   }
 
-  chechIfExists(key: T): boolean {
-    let root: Node<T> | null = this.root;
+  chechIfExists(key) {
+    let root = this.root;
     while (root != null) {
       if (key > root.val) root = root.right;
       else if (key < root.val) root = root.left;
@@ -73,7 +67,7 @@ export default class BST<T> {
   }
 }
 
-const bst = new BST<number>();
+const bst = new BST();
 bst.insert(1);
 bst.insert(23);
 bst.insert(32);
@@ -83,5 +77,5 @@ bst.insert(739);
 bst.insert(92);
 bst.insert(5);
 bst.insert(27);
-bst.traverse(TraverseEnum.post);
+bst.traverse("post");
 console.log(bst.chechIfExists(22 + 1));

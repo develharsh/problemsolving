@@ -1,30 +1,52 @@
 #!/bin/bash
-#v2
-if tsc -p tsconfig.json; then
-    start_time=$(date +%s.%N)
-
-    # Execute the command
-    node index.js
-
+#v3
+start_time=$(date +%s.%N)
+if cat input.txt | node index.js; then
     end_time=$(date +%s.%N)
-    
     running_time=$(printf "%.3f" $(echo "$end_time - $start_time" | bc))
-
     echo "Running time: ${running_time}s"
     if [ $1 == 'l' ]; then
-        cp index.ts snippets/leetcode/$2.ts
+        cp index.js snippets/leetcode/$2.js
     elif [ $1 == 'c' ]; then
-        cp index.ts snippets/codeforces/$2.ts
+        cp index.js snippets/codeforces/$2.js
     elif [ $1 == 's' ]; then
-        cp index.ts snippets/standard-dsa/$2.ts
+        cp index.js snippets/standard-dsa/$2.js
     fi
     if [ $3 == "y" ]; then
-        truncate -s 0 index.ts
+        truncate -s 0 index.js
+    elif [[ $3 == "cf" || $3 == "lt" ]]; then
+        cp $3-template.js index.js
     fi
 else
     echo "command returned some error"
 fi
-find . -name "*.js" -type f -delete
+
+#v2
+# if tsc -p tsconfig.json; then
+#     start_time=$(date +%s.%N)
+
+#     # Execute the command
+#     node index.js
+
+#     end_time=$(date +%s.%N)
+    
+#     running_time=$(printf "%.3f" $(echo "$end_time - $start_time" | bc))
+
+#     echo "Running time: ${running_time}s"
+#     if [ $1 == 'l' ]; then
+#         cp index.ts snippets/leetcode/$2.ts
+#     elif [ $1 == 'c' ]; then
+#         cp index.ts snippets/codeforces/$2.ts
+#     elif [ $1 == 's' ]; then
+#         cp index.ts snippets/standard-dsa/$2.ts
+#     fi
+#     if [ $3 == "y" ]; then
+#         truncate -s 0 index.ts
+#     fi
+# else
+#     echo "command returned some error"
+# fi
+# find . -name "*.js" ! -name "index.js" -type f -delete
 
 #v1
 # if tsc -p tsconfig.json; then
