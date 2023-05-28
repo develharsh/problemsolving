@@ -23,8 +23,14 @@ function readline() {
 }
 
 /* Code Start */
-//
+//https://codeforces.com/problemset/problem/236/A
 
 function main() {
-  // let input = readline();
+  let input = readline();
+  let keys = new Map();
+  for (const v of input) {
+    keys.set(v, true);
+  }
+  if (keys.size % 2 === 0) print(`CHAT WITH HER!`);
+  else print(`IGNORE HIM!`);
 }
