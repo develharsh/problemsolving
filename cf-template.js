@@ -2,8 +2,8 @@
 process.stdin.resume();
 process.stdin.setEncoding("utf-8");
 
-function print(x) {
-  console.log(x.trim());
+function print(...x) {
+  console.log(x.join(" ").trim());
 }
 let inputString = "";
 let currentLine = 0;
