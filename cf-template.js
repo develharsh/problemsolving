@@ -16,7 +16,8 @@ process.stdin.on("end", () => {
     .split("\n")
     .filter((e) => e.length)
     .map((e) => e.trim());
-  main();
+  let times = process.env.TIMES ? process.env.TIMES : 1;
+  while (times--) main();
 });
 function readline() {
   return inputString[currentLine++];

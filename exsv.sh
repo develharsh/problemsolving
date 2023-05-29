@@ -1,7 +1,7 @@
 #!/bin/bash
 #v3
 start_time=$(date +%s.%N)
-if cat input.txt | node index.js; then
+if cat input.txt | TIMES=$3 node index.js; then
     end_time=$(date +%s.%N)
     running_time=$(printf "%.3f" $(echo "$end_time - $start_time" | bc))
     echo "Running time: ${running_time}s"
