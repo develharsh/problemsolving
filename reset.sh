@@ -1,6 +1,6 @@
 #!/bin/bash
 if [ $1 == "y" ]; then
-    truncate -s 0 index.js input.txt
+    truncate -s 0 main.go input.txt
 elif [[ $1 == "cf" || $1 == "lt" ]]; then
-    cp $1-template.js index.js
+    cp $1-template.tmp main.go
 fi

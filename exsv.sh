@@ -1,16 +1,16 @@
 #!/bin/bash
 #v3
 start_time=$(date +%s.%N)
-if cat input.txt | TIMES=$3 node index.js; then
+if cat input.txt | go run main.go $3; then
     end_time=$(date +%s.%N)
     running_time=$(printf "%.3f" $(echo "$end_time - $start_time" | bc))
     echo "Running time: ${running_time}s"
     if [ $1 == 'l' ]; then
-        cp index.js snippets/leetcode/$2.js
+        cp main.go snippets/leetcode/$2.go
     elif [ $1 == 'c' ]; then
-        cp index.js snippets/codeforces/$2.js
+        cp main.go snippets/codeforces/$2.go
     elif [ $1 == 's' ]; then
-        cp index.js snippets/standard-dsa/$2.js
+        cp main.go snippets/standard-dsa/$2.go
     fi
 else
     echo "command returned some error"
