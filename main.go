@@ -36,7 +36,6 @@ func main() {
 
 	for i := 1; i <= times; i++ {
 		solve()
-		printf("\n")
 	}
 
 }

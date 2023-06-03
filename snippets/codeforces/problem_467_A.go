@@ -13,8 +13,20 @@ var writer *bufio.Writer = bufio.NewWriter(os.Stdout)
 func printf(f string, a ...interface{}) { fmt.Fprintf(writer, f, a...) }
 func scanf(f string, a ...interface{})  { fmt.Fscanf(reader, f, a...) }
 
-func solve() {
-	printf("%s", "Harsh")
+func solve() { //https://codeforces.com/problemset/problem/467/A
+	var t, ans int
+
+	ans = 0
+
+	scanf("%d\n", &t)
+	for i := 1; i <= t; i++ {
+		var a, b int
+		scanf("%d %d\n", &a, &b)
+		if b-a >= 2 {
+			ans++
+		}
+	}
+	printf("%d\n", ans)
 }
 
 func main() {
